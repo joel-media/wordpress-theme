@@ -426,19 +426,27 @@ function ajax_video_files() {
 use Tonik\Theme\App\Helper\Google_API;
 
 function print_youtube_api_status () {
-    $client = new Google_API();
-    $api_class = '';
+    // Google_API throws if the credentials file is missing or unreadable, and a
+    // token renewal can fail on network errors. Degrade to a status label rather
+    // than fataling the whole admin page.
+    $api_class = 'u-red';
     $api_text = '';
-    if ($client->authenticated()) {
-      $api_class = 'u-green';
-      $api_text = '[YouTube API: authenticated]';
-    } else {
-      $api_class = 'u-red';
-      $api_text = sprintf(
-        '[YouTube API: missing - <a href="%s" target="_blank">%s</a>]',
-        $client->getAuthUrl($post->ID),
-        'Authenticate'
-      );
+    try {
+      $client = new Google_API();
+      if ($client->authenticated()) {
+        $api_class = 'u-green';
+        $api_text = '[YouTube API: authenticated]';
+      } else {
+        // No post context on this page — getAuthUrl() defaults its own state.
+        $api_text = sprintf(
+          '[YouTube API: missing - <a href="%s" target="_blank">%s</a>]',
+          $client->getAuthUrl(),
+          'Authenticate'
+        );
+      }
+    } catch (\Throwable $e) {
+      error_log('[Google_API] unavailable on videos admin page: ' . $e->getMessage());
+      $api_text = '[YouTube API: unavailable]';
     }
     printf(
       ' <span class="%s">%s</span>',

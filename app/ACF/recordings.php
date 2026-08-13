@@ -33,20 +33,26 @@ if(function_exists('acf_add_local_field_group')):
         return $field;
     }
 
-    $client = new Google_API();
-
-    $api_class = '';
+    // Google_API throws if the credentials file is missing or unreadable, and a
+    // token renewal can fail on network errors. Neither is worth taking down the
+    // whole post editor for — degrade to a status label instead.
+    $api_class = 'u-red';
     $api_text = '';
-    if ($client->authenticated()) {
-      $api_class = 'u-green';
-      $api_text = '[YouTube API: authenticated]';
-    } else {
-      $api_class = 'u-red';
-      $api_text = sprintf(
-        '[YouTube API: missing - <a href="%s" target="_blank">%s</a>]',
-        $client->getAuthUrl($post->ID),
-        'Authenticate'
-      );
+    try {
+      $client = new Google_API();
+      if ($client->authenticated()) {
+        $api_class = 'u-green';
+        $api_text = '[YouTube API: authenticated]';
+      } else {
+        $api_text = sprintf(
+          '[YouTube API: missing - <a href="%s" target="_blank">%s</a>]',
+          $client->getAuthUrl($post->ID),
+          'Authenticate'
+        );
+      }
+    } catch (\Throwable $e) {
+      error_log('[Google_API] unavailable on post edit screen: ' . $e->getMessage());
+      $api_text = '[YouTube API: unavailable]';
     }
     $field['instructions'] .= sprintf(
       ' <span class="%s">%s</span>',

@@ -103,14 +103,14 @@
               <span v-else class="u-ic-send" />
             </button>
           </div>
+          <p class="mt-2 mb-0 text-xs text-gray-400 text-center">Zeteo ist eine KI und kann Fehler machen. Keine medizinische oder seelsorgerliche Beratung.</p>
           <button
             v-if="!streaming"
-            class="block mx-auto mt-2 text-xs text-gray-400 bg-transparent border-none cursor-pointer hover:text-gray-600 transition"
+            class="block mx-auto mt-3 px-4 py-1.5 border border-gray-300 rounded-full text-sm text-gray-700 bg-white cursor-pointer transition hover:bg-gray-50 hover:border-gray-400"
             @click="clearHistory"
           >
             Neues Gespräch
           </button>
-          <p class="mt-2 mb-0 text-xs text-gray-400 text-center">Zeteo ist eine KI und kann Fehler machen. Keine medizinische oder seelsorgerliche Beratung.</p>
         </div>
 
         <!-- Separator -->

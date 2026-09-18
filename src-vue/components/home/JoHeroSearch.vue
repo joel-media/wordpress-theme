@@ -110,6 +110,7 @@
           >
             Neues Gespräch
           </button>
+          <p class="mt-2 mb-0 text-xs text-gray-400 text-center">Zeteo ist eine KI und kann Fehler machen. Keine medizinische oder seelsorgerliche Beratung.</p>
         </div>
 
         <!-- Separator -->

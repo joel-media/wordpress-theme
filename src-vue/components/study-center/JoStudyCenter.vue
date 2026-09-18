@@ -37,6 +37,7 @@
             <span v-else class="u-ic-send" />
           </button>
         </div>
+        <p class="w-full max-w-[700px] mt-2 mb-0 text-xs text-gray-400 text-center">Zeteo ist eine KI und kann Fehler machen. Keine medizinische oder seelsorgerliche Beratung.</p>
       </div>
 
       <!-- Conversation -->
@@ -88,6 +89,7 @@
           >
             Neues Gespräch
           </button>
+          <p class="mt-2 mb-0 text-xs text-gray-400 text-center">Zeteo ist eine KI und kann Fehler machen. Keine medizinische oder seelsorgerliche Beratung.</p>
         </div>
       </template>
 

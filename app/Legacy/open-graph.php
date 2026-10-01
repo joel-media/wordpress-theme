@@ -124,7 +124,6 @@ function print_open_graph() {
     }
 
     ?>
-    <!-- <title><?php wp_title( '&laquo;', true, 'right' ); bloginfo( 'name' ); echo $title_extension; ?></title> -->
     <meta name="description"                content="<?= htmlspecialchars( $description ) ?>">
     <meta name="author"                     content="<?= $author ?>">
     <meta property="og:title"               content="<?= $og_title; ?>" />

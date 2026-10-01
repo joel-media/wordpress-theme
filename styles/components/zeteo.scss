@@ -1,0 +1,26 @@
+/* ==========================================================================
+   #ZETEO
+   Standalone app-like chat page. Component styling lives in Tailwind
+   classes (JoZeteo.vue); this only sets the page canvas.
+   ========================================================================== */
+
+html.c-zeteo,
+body.c-zeteo {
+  min-height: 100%;
+  background-color: $c-brand-8;
+  color: $c-white;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.c-zeteo {
+  background-image: radial-gradient(120% 60% at 50% 0%, $c-brand-6 0%, $c-brand-8 70%);
+  background-attachment: fixed;
+}
+
+/* Hide scrollbar on the horizontal source carousel */
+.c-zeteo-carousel {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}

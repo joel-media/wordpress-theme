@@ -14,6 +14,7 @@ import JoHeroSearch from './components/home/JoHeroSearch.vue'
 
 /* Components (lazy — heavy, page-specific) */
 const JoStudyCenter = () => import('./components/study-center/JoStudyCenter.vue')
+const JoZeteo = () => import('./components/study-center/JoZeteo.vue')
 
 /* Util */
 import toggle from './components/utils/toggle.js'
@@ -41,6 +42,7 @@ instantiate.component('JoCookieConsent', JoCookieConsent)
 instantiate.component('JoEvents', JoEvents)
 instantiate.component('JoPaginationWrapper', JoPaginationWrapper)
 instantiate.component('JoStudyCenter', JoStudyCenter)
+instantiate.component('JoZeteo', JoZeteo)
 instantiate.component('JoHeroSearch', JoHeroSearch)
 
 /* Instantiate Utils */
